@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/js/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="/css/pgTeacher.css" rel="stylesheet" />
+    <script src="/js/jquery-2.1.4.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"
+    ></script>
+  </head>
+  <body>
+    <main id="webcam-app" class="row">
+      <div
+        id="sidebar-container"
+        class="sidebar-expanded d-none d-md-block col-2"
+      >
+        <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+        <!-- Bootstrap List Group -->
+        <ul class="list-group">
+          <!-- Separator with title -->
+          <li
+            class="
+              list-group-item
+              sidebar-separator-title
+              text-muted
+              d-flex
+              align-items-center
+              menu-collapsed
+            "
+          >
+            <small>MAIN MENU</small>
+          </li>
+          <!-- /END Separator -->
+          <!-- Menu with submenu -->
+          <% if(TeacherloggedIn) { %>
+          <a
+            href="/viewclass"
+            aria-expanded="false"
+            class="
+              bg-dark
+              list-group-item list-group-item-action
+              flex-column
+              align-items-start
+            "
+          >
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span class="fa fa-dashboard fa-fw mr-3"></span>
+              <span class="menu-collapsed">QUẢN LÍ LỚP</span>
+              <span class="submenu-icon ml-auto"></span>
+            </div>
+          </a>
+          <% } %> <% if(TeacherloggedIn == null) { %>
+          <a
+            href="/viewclass"
+            aria-expanded="false"
+            class="
+              bg-dark
+              list-group-item list-group-item-action
+              flex-column
+              align-items-start
+            "
+          >
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span class="fa fa-dashboard fa-fw mr-3"></span>
+              <span class="menu-collapsed">LỚP</span>
+              <span class="submenu-icon ml-auto"></span>
+            </div>
+          </a>
+          <a
+            href="/importhinh"
+            aria-expanded="false"
+            class="
+              bg-dark
+              list-group-item list-group-item-action
+              flex-column
+              align-items-start
+            "
+          >
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span class="fa fa-dashboard fa-fw mr-3"></span>
+              <span class="menu-collapsed">IMPORT HÌNH</span>
+              <span class="submenu-icon ml-auto"></span>
+            </div>
+          </a>
+          <% } %>
+          <!-- Submenu content -->
+          <a
+            href="#submenu2"
+            data-toggle="collapse"
+            aria-expanded="false"
+            class="
+              bg-dark
+              list-group-item list-group-item-action
+              flex-column
+              align-items-start
+            "
+          >
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span class="fa fa-user fa-fw mr-3"></span>
+              <span class="menu-collapsed">THÔNG TIN</span>
+              <span class="submenu-icon ml-auto"></span>
+            </div>
+          </a>
+          <!-- Submenu content -->
+          <div id="submenu2" class="collapse sidebar-submenu">
+            <a
+              href="/profile"
+              class="list-group-item list-group-item-action bg-dark text-white"
+            >
+              <span class="menu-collapsed">THÔNG TIN</span>
+            </a>
+            <a
+              href="#"
+              class="list-group-item list-group-item-action bg-dark text-white"
+            >
+              <span class="menu-collapsed">MẬT KHẨU</span>
+            </a>
+          </div>
+          <!-- Separator with title -->
+          <li
+            class="
+              list-group-item
+              sidebar-separator-title
+              text-muted
+              d-flex
+              align-items-center
+              menu-collapsed
+            "
+          >
+            <small>OPTIONS</small>
+          </li>
+          <!-- /END Separator -->
+          <a href="#" class="bg-dark list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span class="fa fa-calendar fa-fw mr-3"></span>
+              <span class="menu-collapsed">Calendar</span>
+            </div>
+          </a>
+          <a
+            href="https://mail.google.com/"
+            class="bg-dark list-group-item list-group-item-action"
+          >
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span class="fa fa-envelope-o fa-fw mr-3"></span>
+              <span class="menu-collapsed"
+                >Messages
+                <span class="badge badge-pill badge-primary ml-2">5</span></span
+              >
+            </div>
+          </a>
+          <!-- Separator without title -->
+          <li class="list-group-item sidebar-separator menu-collapsed"></li>
+          <!-- /END Separator -->
+          <a href="#" class="bg-dark list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span class="fa fa-question fa-fw mr-3"></span>
+              <span class="menu-collapsed">Help</span>
+            </div>
+          </a>
+          <a
+            href="#"
+            data-toggle="sidebar-colapse"
+            class="
+              bg-dark
+              list-group-item list-group-item-action
+              d-flex
+              align-items-center
+            "
+          >
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+              <span id="collapse-text" class="menu-collapsed">Collapse</span>
+            </div>
+          </a>
+          <a
+            href="/logout"
+            class="bg-dark list-group-item list-group-item-action"
+          >
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span class="fa fa-sign-out fa-fw mr-3"></span>
+              <span class="menu-collapsed">THOÁT</span>
+            </div>
+          </a>
+        </ul>
+        <!-- List Group END-->
+      </div>
+      <!-- sidebar-container END -->
+      <div class="form-control webcam-start" id="webcam-control">
+        <label class="form-switch">
+          <input type="checkbox" id="webcam-switch" />
+          <i></i>
+          <span id="webcam-caption">Click to Start Camera</span>
+        </label>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+          <span>File</span>
+          <input name="myImage" type="file" />
+          <button type="submit" class="btn-danger">SUBMIT</button>
+        </form>
+        <button id="cameraFlip" class="btn d-none"></button>
+      </div>
+
+      <div id="errorMsg" class="col-12 col-md-6 alert-danger d-none">
+        Fail to start camera, please allow permision to access camera. <br />
+        If you are browsing through social media built in browsers, you would
+        need to open the page in Sarafi (iPhone)/ Chrome (Android)
+        <button id="closeError" class="btn btn-primary ml-3">OK</button>
+      </div>
+      <div class="md-modal md-effect-12">
+        <div id="app-panel" class="app-panel md-content row p-0 m-0">
+          <div
+            id="webcam-container"
+            class="webcam-container col-12 d-none p-0 m-0"
+          >
+            <video
+              id="webcam"
+              autoplay
+              playsinline
+              width="640"
+              height="480"
+            ></video>
+            <canvas id="canvas" class="d-none"></canvas>
+            <div class="flash"></div>
+            <audio id="snapSound" src="audio/snap.wav" preload="auto"></audio>
+          </div>
+          <div id="cameraControls" class="cameraControls">
+            <a href="#" id="exit-app" title="Exit App" class="d-none"
+              ><i class="material-icons">exit_to_app</i></a
+            >
+            <a href="#" id="take-photo" title="Take Photo"
+              ><i class="material-icons">camera_alt</i></a
+            >
+            <a
+              href="#"
+              id="download-photo"
+              download="selfie.png"
+              target="_blank"
+              title="Save Photo"
+              class="d-none"
+              ><i class="material-icons">file_download</i></a
+            >
+            <a href="#" id="resume-camera" title="Resume Camera" class="d-none"
+              ><i class="material-icons">camera_front</i></a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="md-overlay"></div>
+    </main>
+    <script src="/js/aiscript.js"></script>
+  </body>
+</html>

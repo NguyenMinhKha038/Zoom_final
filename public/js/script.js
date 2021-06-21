@@ -92,7 +92,12 @@ socket.on('name-id',async (lopid,tenhs) => {
         });
     }if(role===0){
         const DD = await DiemDanh.findOne({ MaGV: StudentID,Ngay:toDay });
-        DD.Sinhvien.push([NameofStudent, Email]);
+        const arr=[]
+        arr.push([NameofStudent, Email]);
+        await DiemDanh.findOneAndUpdate(
+          { MaGV: StudentID, Ngay: toDay },
+          { Sinhvien :arr}
+        );
     }
 
 
